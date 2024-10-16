@@ -1,0 +1,34 @@
+<div class="task-item">
+  <div *ngIf="!isEditing">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p>Created: {{ task.creationDate }}</p>
+    <p>Due: {{ task.dueDate }}</p>
+    <p>Last Updated: {{ task.lastUpdatedDate }}</p>
+    
+    <button class="completebtn" (click)="toggleStatus()">
+      {{ task.status === 'Pending' ? 'Complete' : 'Pending' }}
+    </button>
+    <button class="editbtn" (click)="toggleEditMode()">Edit Task</button>
+    <button class="clonebtn" (click)="cloneTask()">Clone Task</button>
+    <button class="dltbtn" (click)="deleteTask()">Delete Task</button>
+  </div>
+
+  <div *ngIf="isEditing">
+    <label>
+      Title:
+      <input [(ngModel)]="task.title" />
+    </label>
+    <label>
+      Description:
+      <textarea [(ngModel)]="task.description"></textarea>
+    </label>
+    <label>
+      Due Date:
+      <input type="date" [(ngModel)]="task.dueDate" />
+    </label>
+    
+    <button (click)="saveTask()">Save</button>
+    <button (click)="toggleEditMode()">Cancel</button>
+  </div>
+</div>

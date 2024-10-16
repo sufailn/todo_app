@@ -1,0 +1,20 @@
+<nav>
+  <button (click)="showPendingTasks()">Pending Tasks</button>
+  <button (click)="showCompletedTasks()">Completed Tasks</button>
+  <button (click)="goToLogin()">Logout</button>
+</nav>
+<br><br>
+<select (change)="onFilterChange($event)">
+  <option value="today">Today</option>
+  <option value="week">Pending Tasks of this week</option>
+  <option value="month">Pending Tasks of this month</option>
+  <option value="all">All tasks</option>
+</select>
+
+<div>
+  <p>Total tasks: {{ tasks.length }}</p>
+  <p>Pending tasks: {{ pendingTasksCount }}</p>
+  <p>Completed tasks: {{ completedTasksCount }}</p>
+</div>
+
+<app-task-list [tasks]="filteredTasks"></app-task-list>
